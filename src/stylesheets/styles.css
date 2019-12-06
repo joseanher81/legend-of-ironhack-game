@@ -1,0 +1,12 @@
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  background-image: url("../img/medieval_wallpaper.jpg");
+}
+canvas{
+  background-color: white;
+  border: 15px ridge #784212;
+}
