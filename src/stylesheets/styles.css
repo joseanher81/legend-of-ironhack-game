@@ -7,6 +7,6 @@ body{
   background-image: url("../img/medieval_wallpaper.jpg");
 }
 canvas{
-  background-color: white;
+  background-color: #8fb63c;
   border: 15px ridge #784212;
 }
