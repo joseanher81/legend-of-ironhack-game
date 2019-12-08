@@ -1,2 +1,2 @@
-# rpg-game
-Game project for Ironhack
+# The Legend of Ironhack
+RPG game project for Ironhack
