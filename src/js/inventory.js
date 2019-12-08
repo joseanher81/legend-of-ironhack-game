@@ -6,10 +6,13 @@ class Inventory {
     this.y = y;
     this.width = width;
     this.height = height;
+    this.logo = new Image();
+    this.logo.src = "./img/leyend.png";
   }
 
   draw() {
     this.ctx.fillStyle = '#000';
     this.ctx.fillRect( this.x, this.y, this.width, this.height);
+    this.ctx.drawImage(this.logo, 10, 10, 350, 100);
   }
 }

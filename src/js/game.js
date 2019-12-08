@@ -35,7 +35,6 @@ class Game {
       let delta = (timeStamp - oldTimeStamp) / 1000;
       oldTimeStamp = timeStamp;
   
-  
       // Update
       this.hero.update(this.controller.keyPressed, delta);
   
@@ -49,35 +48,22 @@ class Game {
       this.map.draw();
       this.inventory.draw();
       this.hero.draw();
-      
+      this.showFps(delta);
+
       window.requestAnimationFrame(gameLoop);
     }
 
     window.requestAnimationFrame(gameLoop);
   }
 
-/*   gameLoop(timeStamp) {
+  showFps(delta) {
+    //Calculate fps
+    var fps = Math.round(1 / delta);
 
-    // Seconds passed since last frame
-    //let secondsPassed = (timeStamp - oldTimeStamp) / 1000;
-    //oldTimeStamp = timeStamp;
-
-
-    // Update
-
-
-    // Collision detection
-
-
-    // Clear
-
-
-    // Draw
-    // this.map.draw();
-    // this.inventory.draw();
-
-
-    window.requestAnimationFrame(gameLoop);
-  } */
+    //Draw number to the screen
+    this.ctx.font = '20px Arial';
+    this.ctx.fillStyle = 'white';
+    this.ctx.fillText("FPS: " + fps, 10, 30);
+  }
 
 }
