@@ -5,6 +5,7 @@ body{
   height: 100vh;
   flex-direction: column;
   background-image: url("../img/medieval_wallpaper.jpg");
+  overflow: hidden;
 }
 canvas{
   background-color: #8fb63c;

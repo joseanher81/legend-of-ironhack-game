@@ -75,14 +75,15 @@ class Map {
     };
   }
 
-  draw() {
+  /* draw() {
     // Needed to be sure the tileSheet is already loaded before trying to draw it
     this.tileSheet.onload = function() {
       this.drawMap();
     }.bind(this);
-  }
+  } */
 
-  drawMap() {
+  draw() {
+    //console.log("Draw map");
     for(let col = 0; col < this.mapCols; col++) {
       for(let row = 0; row < this.mapRows; row++) {
         let tile = this.tileTypes[this.getTile(col, row)];

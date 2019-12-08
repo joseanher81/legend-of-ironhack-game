@@ -6,10 +6,14 @@ class Game {
     this.map;
     this.inventory;
     this.hero;
+    this.controller;
   }
 
   init() {
     console.group("Initializing game");
+
+    // Initialize controls
+    this.controller = new Controller();
 
     // Initialize map
     this.map = new Map(this.ctx);
@@ -20,14 +24,39 @@ class Game {
     this.inventory.draw();
 
     // Initialize hero
-    this.hero = new Character(this.ctx);
+    this.hero = new Hero(this.ctx, "./img/hero.png");
     this.hero.draw();
 
+    // Game loop
+    let oldTimeStamp = 0;
+    let gameLoop = timeStamp => {
 
-    window.requestAnimationFrame(this.gameLoop);
+      // Seconds passed since last frame
+      let delta = (timeStamp - oldTimeStamp) / 1000;
+      oldTimeStamp = timeStamp;
+  
+  
+      // Update
+      this.hero.update(this.controller.keyPressed, delta);
+  
+      // Collision detection
+  
+  
+      // Clear
+  
+  
+      // Draw
+      this.map.draw();
+      this.inventory.draw();
+      this.hero.draw();
+      
+      window.requestAnimationFrame(gameLoop);
+    }
+
+    window.requestAnimationFrame(gameLoop);
   }
 
-  gameLoop(timeStamp) {
+/*   gameLoop(timeStamp) {
 
     // Seconds passed since last frame
     //let secondsPassed = (timeStamp - oldTimeStamp) / 1000;
@@ -44,11 +73,11 @@ class Game {
 
 
     // Draw
-    this.map.draw();
-    this.inventory.draw();
+    // this.map.draw();
+    // this.inventory.draw();
 
 
     window.requestAnimationFrame(gameLoop);
-  }
+  } */
 
 }
