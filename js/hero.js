@@ -1,7 +1,8 @@
 class Hero {
 
-  constructor(ctx, imgSrc, posX = 200, posY = 200, speed = 100, size = 40) {
+  constructor(ctx, imgSrc, map, posX = 200, posY = 200, speed = 100, size = 40) {
     this.ctx = ctx;
+    this.map = map;
     this.posX = posX;
     this.posY = posY;
     this.speed = speed;
@@ -14,23 +15,33 @@ class Hero {
   }
 
   update(movement, delta) {
+    let futureX = this.posX;
+    let futureY = this.posY;
     switch(movement) {
       case "left":
-        this.posX -= this.speed * delta;
+        futureX -= this.speed * delta;
         this.spriteY = 1; // Look to the left
         break;
       case "right":
-        this.posX += this.speed * delta;
+        futureX += this.speed * delta;
         this.spriteY = 2;  // Look to the right
         break;
       case "down":
-        this.posY += this.speed * delta;
+        futureY += this.speed * delta;
         this.spriteY = 0;  // Look down
         break;
       case "up":
-        this.posY -= this.speed * delta;
+        futureY -= this.speed * delta;
         this.spriteY = 3;  // Look up
         break;      
+    }
+
+    console.log("FutureX " + futureX + " FutureY " + futureY );
+    // Check whether future position is valid
+    console.log("Collision: " + this.collision(futureX, futureY));
+    if(!this.collision(futureX, futureY)) {
+      this.posX = futureX;
+      this.posY = futureY;
     }
 
     // Sprite animation (with reset)  TODO probably I can do this better
@@ -45,12 +56,37 @@ class Hero {
 
   }
 
-/*   draw() {
-    // Needed to be sure the tileSheet is already loaded before trying to draw it
-    this.character.onload = function() {
-      this.drawCharacter();
-    }.bind(this);
-  } */
+  collision(x, y) {
+    // fine tuning coordinates for better collisions and "y" taking into account score/inventory bar
+    let tuning = 2; // pixels
+    y -= this.map.startY;
+
+    // Future tiles at every vertex
+    let tileAtTopLeft = this.map.getTileAtPositionXY(x + tuning, y + tuning);
+    let tileAtTopRight = this.map.getTileAtPositionXY(x + this.map.tileSize - tuning, y + tuning);
+    let tileAtBottomLeft = this.map.getTileAtPositionXY(x + tuning, y + this.map.tileSize - tuning);
+    let tileAtBottomRight = this.map.getTileAtPositionXY(x - tuning + this.map.tileSize, y + this.map.tileSize - tuning);
+    
+    console.log(`TL=${tileAtTopLeft} TR=${tileAtTopRight} BL=${tileAtBottomLeft} BR=${tileAtBottomRight}`);
+    console.log("walkable TL ", this.map.tileTypes[tileAtTopLeft].walkable );
+    console.log("walkable TR ", this.map.tileTypes[tileAtTopRight].walkable );
+    console.log("walkable BL ", this.map.tileTypes[tileAtBottomLeft].walkable );
+    console.log("walkable BR ", this.map.tileTypes[tileAtBottomRight].walkable );
+
+    let colliding = false;
+
+    // Check tile walkability
+    if(!this.map.tileTypes[tileAtTopLeft].walkable || !this.map.tileTypes[tileAtTopRight].walkable || !this.map.tileTypes[tileAtBottomLeft].walkable || !this.map.tileTypes[tileAtBottomRight].walkable) {
+      colliding = true;
+    }
+
+    // Check collision with bounds
+    if((x < 0) || (x > (this.map.mapCols - 1) * this.map.tileSize) || (y < 0)|| (y > (this.map.mapRows - 1) * this.map.tileSize)) {
+      colliding = true;
+    }
+
+    return colliding;
+  }
 
   draw() {
     //console.log("Draws hero");

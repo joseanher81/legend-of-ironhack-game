@@ -24,7 +24,7 @@ class Game {
     this.inventory.draw();
 
     // Initialize hero
-    this.hero = new Hero(this.ctx, "./img/hero.png");
+    this.hero = new Hero(this.ctx, "./img/hero.png", this.map);
     this.hero.draw();
 
     // Game loop
@@ -41,8 +41,9 @@ class Game {
       // Collision detection
   
   
-      // Clear
-  
+      // Clear (probably not needed since we draw the map first)
+      //this.ctx.fillStyle="#000000";
+      //this.ctx.fillRect(0, 0, this.map.mapCols * this.map.tileSize, this.map.mapRows * this.map.tileSize + this.map.startY);
   
       // Draw
       this.map.draw();

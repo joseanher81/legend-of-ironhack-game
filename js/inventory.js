@@ -13,6 +13,6 @@ class Inventory {
   draw() {
     this.ctx.fillStyle = '#000';
     this.ctx.fillRect( this.x, this.y, this.width, this.height);
-    this.ctx.drawImage(this.logo, 10, 10, 350, 100);
+    this.ctx.drawImage(this.logo, 10, 10, 350, 100); 
   }
 }
