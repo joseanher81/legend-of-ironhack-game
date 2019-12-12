@@ -6,6 +6,7 @@ class Game {
     this.map;
     this.inventory;
     this.hero;
+    this.enemy;
     this.controller;
   }
 
@@ -27,6 +28,10 @@ class Game {
     this.hero = new Hero(this.ctx, "./img/hero.png", this.map);
     this.hero.draw();
 
+    // Initialize enemy
+    this.enemy =  new Enemy(this.ctx, "./img/enemyDevil.png", this.map);
+    this.enemy.draw();
+
     // Game loop
     let oldTimeStamp = 0;
     let gameLoop = timeStamp => {
@@ -37,6 +42,7 @@ class Game {
   
       // Update
       this.hero.update(this.controller.keyPressed, delta);
+      this.enemy.update(delta);
   
       // Collision detection
   
@@ -49,6 +55,7 @@ class Game {
       this.map.draw();
       this.inventory.draw();
       this.hero.draw();
+      this.enemy.draw();
       this.showFps(delta);
 
       window.requestAnimationFrame(gameLoop);
