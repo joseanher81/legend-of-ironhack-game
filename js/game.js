@@ -6,7 +6,7 @@ class Game {
     this.map;
     this.inventory;
     this.hero;
-    this.enemy;
+    this.enemies;
     this.controller;
   }
 
@@ -28,9 +28,9 @@ class Game {
     this.hero = new Hero(this.ctx, "./img/hero.png", this.map);
     this.hero.draw();
 
-    // Initialize enemy
-    this.enemy =  new Enemy(this.ctx, "./img/enemyDevil.png", this.map);
-    this.enemy.draw();
+    // Initialize enemies array
+    this.enemies = [new Enemy(this.ctx, "./img/enemyDevil.png", this.map), new Enemy(this.ctx, "./img/enemyDevil.png", this.map)];
+    this.enemies.forEach(enemy => enemy.draw());
 
     // Game loop
     let oldTimeStamp = 0;
@@ -42,22 +42,16 @@ class Game {
   
       // Update
       this.hero.update(this.controller.keyPressed, delta);
-      this.enemy.update(delta);
-  
-      // Collision detection
-  
-  
-      // Clear (probably not needed since we draw the map first)
-      //this.ctx.fillStyle="#000000";
-      //this.ctx.fillRect(0, 0, this.map.mapCols * this.map.tileSize, this.map.mapRows * this.map.tileSize + this.map.startY);
-  
+      this.enemies.forEach(enemy => enemy.update(delta));
+
       // Draw
       this.map.draw();
       this.inventory.draw();
       this.hero.draw();
-      this.enemy.draw();
-      this.showFps(delta);
+      this.enemies.forEach(enemy => enemy.draw());
+      
 
+      this.showFps(delta);
       window.requestAnimationFrame(gameLoop);
     }
 
