@@ -1,6 +1,6 @@
 class Enemy {
 
-  constructor(ctx, imgSrc, map, posX = 500, posY = 500, speed = 50, size = 40) {
+  constructor(ctx, imgSrc, map, life, power, posX = 500, posY = 500, speed = 50, size = 40) {
     this.ctx = ctx;
     this.map = map;
     this.posX = posX;
@@ -13,7 +13,9 @@ class Enemy {
     this.spriteY = 0;
     this.spriteRefresh = 0;
 	  this.moveDirection = this.randomDirection();
-	  this.moveDirectionCount = 0;
+    this.moveDirectionCount = 0;
+    this.life = life;
+    this.power = power;
   }
 
   update(delta) {

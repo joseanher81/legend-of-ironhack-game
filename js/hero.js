@@ -1,6 +1,6 @@
 class Hero {
 
-  constructor(ctx, imgSrc, map, posX = 200, posY = 200, speed = 100, size = 40) {
+  constructor(ctx, imgSrc, map, life, power, posX = 200, posY = 200, speed = 100, size = 40) {
     this.ctx = ctx;
     this.map = map;
     this.posX = posX;
@@ -12,6 +12,9 @@ class Hero {
     this.spriteX = 0;
     this.spriteY = 0;
     this.spriteRefresh = 0;
+    this.life = life;
+    this.power = power;
+    this.inmunity = 0; // in seconds
   }
 
   update(movement, delta, enemies) {
@@ -36,10 +39,10 @@ class Hero {
         break;      
     }
 
-    // Check whether there is collision with enemies
-    if(this.collisionWithEnemies(enemies)) {
-      alert("Touching enemy");
-    }
+    // Check whether there is collision with enemies (uses the current position)
+    this.collisionWithEnemies(enemies, delta);
+
+    // TODO Check death 
     
     // Check whether future position is valid
     if(!this.collision(futureX, futureY)) {
@@ -85,9 +88,9 @@ class Hero {
     return colliding;
   }
 
-  collisionWithEnemies(enemies) {
-    let collision = false;
-
+  collisionWithEnemies(enemies, delta) {
+    console.log("Vida " + this.life);
+    console.log("Imnunity " + this.inmunity);
     // Fine tuning collision box size for more realistic collisions
     let tuning = 10; // pixels;
     
@@ -95,15 +98,25 @@ class Hero {
       if(this.posX < enemy.posX + (enemy.size - tuning) && this.posX + (this.size - tuning) > enemy.posX &&
         this.posY < enemy.posY + (enemy.size - tuning) && this.posY + (this.size - tuning) > enemy.posY) {
           // There is collision
-          collision = true;
+          if(this.inmunity <= 0) {
+            this.life -= enemy.power;
+            this.inmunity = 3; // three seconds of inmunity after enemy touch
+          }
       } 
     });
-
-    return collision;
+    
+    // Reducing inmunity seconds after enemy touch
+    if(this.inmunity < 0) {
+      this.inmunity = 0;
+    } else {
+      this.inmunity -= delta;
+    }
   }
 
   draw() {
-    //console.log("Draws hero");
+    this.ctx.save();
+    if(this.inmunity > 0) this.ctx.globalAlpha = 0.4;
     this.ctx.drawImage(this.character, this.spriteX * this.size, this.spriteY * this.size, 40, 40, this.posX, this.posY, this.size, this.size);
+    this.ctx.restore();
   }
 }

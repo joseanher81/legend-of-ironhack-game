@@ -20,16 +20,16 @@ class Game {
     this.map = new Map(this.ctx);
     this.map.draw();
 
+    // Initialize hero (6 points of life, 1 point of power)
+    this.hero = new Hero(this.ctx, "./img/hero.png", this.map, 6, 1);
+    this.hero.draw(this.hero.life);
+
     // Initialize inventory
     this.inventory = new Inventory(this.ctx);
     this.inventory.draw();
 
-    // Initialize hero
-    this.hero = new Hero(this.ctx, "./img/hero.png", this.map);
-    this.hero.draw();
-
     // Initialize enemies array
-    this.enemies = [new Enemy(this.ctx, "./img/enemyDevil.png", this.map), new Enemy(this.ctx, "./img/enemyDevil.png", this.map)];
+    this.enemies = [new Enemy(this.ctx, "./img/enemyDevil.png", this.map, 1, 1), new Enemy(this.ctx, "./img/enemyDevil.png", this.map, 1, 1)];
     this.enemies.forEach(enemy => enemy.draw());
 
     // Game loop
@@ -46,10 +46,12 @@ class Game {
 
       // Draw
       this.map.draw();
-      this.inventory.draw();
+      this.inventory.draw(this.hero.life);
       this.hero.draw();
       this.enemies.forEach(enemy => enemy.draw());
       
+      //Check heroe death
+      if(this.hero.life <= 0) console.log("Game over");
 
       this.showFps(delta);
       window.requestAnimationFrame(gameLoop);
