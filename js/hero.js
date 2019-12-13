@@ -14,7 +14,7 @@ class Hero {
     this.spriteRefresh = 0;
   }
 
-  update(movement, delta) {
+  update(movement, delta, enemies) {
     let futureX = this.posX;
     let futureY = this.posY;
     switch(movement) {
@@ -36,9 +36,12 @@ class Hero {
         break;      
     }
 
-    //console.log("FutureX " + futureX + " FutureY " + futureY );
+    // Check whether there is collision with enemies
+    if(this.collisionWithEnemies(enemies)) {
+      alert("Touching enemy");
+    }
+    
     // Check whether future position is valid
-    //console.log("Collision: " + this.collision(futureX, futureY));
     if(!this.collision(futureX, futureY)) {
       this.posX = futureX;
       this.posY = futureY;
@@ -66,12 +69,6 @@ class Hero {
     let tileAtTopRight = this.map.getTileAtPositionXY(x + this.map.tileSize - tuning, y + tuning);
     let tileAtBottomLeft = this.map.getTileAtPositionXY(x + tuning, y + this.map.tileSize - tuning);
     let tileAtBottomRight = this.map.getTileAtPositionXY(x - tuning + this.map.tileSize, y + this.map.tileSize - tuning);
-    
-    // console.log(`TL=${tileAtTopLeft} TR=${tileAtTopRight} BL=${tileAtBottomLeft} BR=${tileAtBottomRight}`);
-    // console.log("walkable TL ", this.map.tileTypes[tileAtTopLeft].walkable );
-    // console.log("walkable TR ", this.map.tileTypes[tileAtTopRight].walkable );
-    // console.log("walkable BL ", this.map.tileTypes[tileAtBottomLeft].walkable );
-    // console.log("walkable BR ", this.map.tileTypes[tileAtBottomRight].walkable );
 
     let colliding = false;
 
@@ -86,6 +83,23 @@ class Hero {
     }
 
     return colliding;
+  }
+
+  collisionWithEnemies(enemies) {
+    let collision = false;
+
+    // Fine tuning collision box size for more realistic collisions
+    let tuning = 10; // pixels;
+    
+    enemies.forEach(enemy => {  
+      if(this.posX < enemy.posX + (enemy.size - tuning) && this.posX + (this.size - tuning) > enemy.posX &&
+        this.posY < enemy.posY + (enemy.size - tuning) && this.posY + (this.size - tuning) > enemy.posY) {
+          // There is collision
+          collision = true;
+      } 
+    });
+
+    return collision;
   }
 
   draw() {

@@ -41,7 +41,7 @@ class Game {
       oldTimeStamp = timeStamp;
   
       // Update
-      this.hero.update(this.controller.keyPressed, delta);
+      this.hero.update(this.controller.keyPressed, delta, this.enemies);
       this.enemies.forEach(enemy => enemy.update(delta));
 
       // Draw

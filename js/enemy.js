@@ -46,9 +46,7 @@ class Enemy {
         break;      
     }
 
-   // console.log("FutureX " + futureX + " FutureY " + futureY );
     // Check whether future position is valid
-   // console.log("Collision: " + this.collision(futureX, futureY));
     if(!this.collision(futureX, futureY)) {
       this.posX = futureX;
       this.posY = futureY;
@@ -98,12 +96,6 @@ class Enemy {
     let tileAtTopRight = this.map.getTileAtPositionXY(x + this.map.tileSize - tuning, y + tuning);
     let tileAtBottomLeft = this.map.getTileAtPositionXY(x + tuning, y + this.map.tileSize - tuning);
     let tileAtBottomRight = this.map.getTileAtPositionXY(x - tuning + this.map.tileSize, y + this.map.tileSize - tuning);
-    
-    // console.log(`TL=${tileAtTopLeft} TR=${tileAtTopRight} BL=${tileAtBottomLeft} BR=${tileAtBottomRight}`);
-    // console.log("walkable TL ", this.map.tileTypes[tileAtTopLeft].walkable );
-    // console.log("walkable TR ", this.map.tileTypes[tileAtTopRight].walkable );
-    // console.log("walkable BL ", this.map.tileTypes[tileAtBottomLeft].walkable );
-    // console.log("walkable BR ", this.map.tileTypes[tileAtBottomRight].walkable );
 
     let colliding = false;
 
@@ -121,7 +113,6 @@ class Enemy {
   }
 
   draw() {
-    //console.log("Draws enemy");
     this.ctx.drawImage(this.character, this.spriteX * this.size, this.spriteY * this.size, 40, 40, this.posX, this.posY, this.size, this.size);
   }
 }
