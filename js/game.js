@@ -25,7 +25,7 @@ class Game {
     this.map.draw();
 
     // Initialize hero (6 points of life, 1 point of power)
-    this.hero = new Hero(this.ctx, "./img/hero.png", this.map, 1, 1);
+    this.hero = new Hero(this.ctx, "./img/hero.png", this.map, 6, 1);
     this.hero.draw(this.hero.life);
 
     // Initialize inventory
@@ -33,12 +33,11 @@ class Game {
     this.inventory.draw();
 
     // Initialize enemies array
-    this.enemies = [new Enemy(this.ctx, "./img/enemyDevil.png", this.map, 1, 1), new Enemy(this.ctx, "./img/enemyDevil.png", this.map, 1, 1)];
-    //this.enemies = [];
+    //this.enemies = [new Enemy(this.ctx, "./img/enemyDevil.png", this.map, 1, 1), new Enemy(this.ctx, "./img/enemyDevil.png", this.map, 1, 1)];
+    this.enemies = [];
     this.enemies.forEach(enemy => enemy.draw());
 
-    // Game loop
-    
+    // Game loop   
     let oldTimeStamp = 0;
     let gameLoop = timeStamp => {
 

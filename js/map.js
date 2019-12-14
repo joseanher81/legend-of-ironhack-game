@@ -106,7 +106,7 @@ class Map {
     if(col < 0) col = 0;
     if(col == this.mapCols) col = this.mapCols-1;
     
-    console.log("COlumna: " + col + " Fila: " +row);
+    //console.log("COlumna: " + col + " Fila: " +row);
     return this.getTile(col, row);
   }
 }

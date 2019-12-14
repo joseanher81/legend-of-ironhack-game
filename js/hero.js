@@ -15,6 +15,7 @@ class Hero {
     this.life = life;
     this.power = power;
     this.inmunity = 0; // in seconds
+    this.weapons = [];
   }
 
   update(movement, delta, enemies) {
@@ -36,8 +37,22 @@ class Hero {
       case "up":
         futureY -= this.speed * delta;
         this.spriteY = 3;  // Look up
-        break;      
+        break;     
+      case "space": 
+        console.log("space pressed");
+        // Create new fire ball
+        this.weapons.push(new Weapon(this.ctx, "./img/fireWeapon.png", this.map, 1, this.posX, this.posY, this.spriteY));
+        break;
     }
+
+    // Update weapons
+    this.weapons.forEach((weapon, i, array) => {
+      weapon.update(delta);
+      if(weapon.duration < 0) {
+        array.splice(i,1);
+        console.log("delete");
+      } 
+    });
 
     // Check whether there is collision with enemies (uses the current position)
     this.collisionWithEnemies(enemies, delta);
@@ -89,8 +104,8 @@ class Hero {
   }
 
   collisionWithEnemies(enemies, delta) {
-    console.log("Vida " + this.life);
-    console.log("Imnunity " + this.inmunity);
+    //console.log("Vida " + this.life);
+    //console.log("Imnunity " + this.inmunity);
     // Fine tuning collision box size for more realistic collisions
     let tuning = 10; // pixels;
     
@@ -114,6 +129,10 @@ class Hero {
   }
 
   draw() {
+    // Update weapons
+    this.weapons.forEach(weapon => weapon.draw());
+
+    // Draw character
     this.ctx.save();
     if(this.inmunity > 0) this.ctx.globalAlpha = 0.4;
     this.ctx.drawImage(this.character, this.spriteX * this.size, this.spriteY * this.size, 40, 40, this.posX, this.posY, this.size, this.size);

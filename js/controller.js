@@ -20,7 +20,10 @@ class Controller {
         break;
       case "ArrowDown":   
         this.keyPressed = "down"; 
-        break;   
+        break;  
+      case " ":
+        this.keyPressed = "space";
+        break;
       case "n":
       case "N":
         this.keyPressed = "N";
@@ -41,9 +44,13 @@ class Controller {
     else if(e.key == "ArrowDown" && this.keyPressed == "down"){
       this.keyPressed = ""; 
     }
+    else if(e.key == " " && this.keyPressed == "space"){
+      this.keyPressed = ""; 
+    }
     else if((e.key == "N" || e.key == "n") && (this.keyPressed == "N" || this.keyPressed == "n")){
       this.keyPressed = ""; 
     }
+    
   } 
 
   
