@@ -14,6 +14,7 @@ class Weapon {
     this.spriteRefresh = 0;
     this.power = 1;
     this.duration = 2; // seconds
+    this.rotationDegrees = 0;
 
     // The weapon face the same direction as the character
     switch(facing) {
@@ -36,18 +37,22 @@ class Weapon {
     switch(this.facing) {
       case "left":
         this.posX -= this.speed * delta;
+        this.rotationDegrees = 90;
         //this.spriteY = 1; // Look to the left
         break;
       case "right":
         this.posX += this.speed * delta;
+        this.rotationDegrees = 270;
         //this.spriteY = 2;  // Look to the right
         break;
       case "down":
         this.posY += this.speed * delta;
+        this.rotationDegrees = 0;
         //this.spriteY = 0;  // Look down
         break;
       case "up":
         this.posY -= this.speed * delta;
+        this.rotationDegrees = 180;
         //this.spriteY = 3;  // Look up
         break;      
     }
@@ -65,6 +70,17 @@ class Weapon {
   }
 
   draw() {
+    this.ctx.save();
+    this.rotateCanvas();  // rotate weapon sprite depending on direction
+    if(this.duration < 0.5) this.ctx.globalAlpha = 0.4;// some fadeout
+    if(this.duration < 0.25) this.ctx.globalAlpha = 0.2;// some fadeout
     this.ctx.drawImage(this.weapon, this.spriteX * this.size, this.spriteY * this.size, 40, 40, this.posX, this.posY, this.size, this.size);
+    this.ctx.restore();
+  }
+
+  rotateCanvas() {
+    this.ctx.translate(this.posX + this.size / 2, this.posY + this.size / 2);
+    this.ctx.rotate((Math.PI / 180) * this.rotationDegrees);
+    this.ctx.translate(-(this.posX + this.size / 2), -(this.posY + this.size / 2));
   }
 }

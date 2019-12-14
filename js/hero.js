@@ -16,9 +16,12 @@ class Hero {
     this.power = power;
     this.inmunity = 0; // in seconds
     this.weapons = [];
+    this.lastWeaponSecs = 0; // time passed since the last weapon was throwed
   }
 
   update(movement, delta, enemies) {
+    this.lastWeaponSecs += delta;
+
     let futureX = this.posX;
     let futureY = this.posY;
     switch(movement) {
@@ -39,18 +42,19 @@ class Hero {
         this.spriteY = 3;  // Look up
         break;     
       case "space": 
-        console.log("space pressed");
-        // Create new fire ball
-        this.weapons.push(new Weapon(this.ctx, "./img/fireWeapon.png", this.map, 1, this.posX, this.posY, this.spriteY));
+        // Create new fire ball (if it has passed at least 0.5 seconds since last one)
+        if(this.lastWeaponSecs > 0.5) {
+          this.weapons.push(new Weapon(this.ctx, "./img/fireWeapon.png", this.map, 1, this.posX, this.posY, this.spriteY));
+          this.lastWeaponSecs = 0;
+        }
         break;
     }
 
     // Update weapons
     this.weapons.forEach((weapon, i, array) => {
       weapon.update(delta);
-      if(weapon.duration < 0) {
+      if(weapon.duration < 0) { // Delete weapon
         array.splice(i,1);
-        console.log("delete");
       } 
     });
 
@@ -104,8 +108,6 @@ class Hero {
   }
 
   collisionWithEnemies(enemies, delta) {
-    //console.log("Vida " + this.life);
-    //console.log("Imnunity " + this.inmunity);
     // Fine tuning collision box size for more realistic collisions
     let tuning = 10; // pixels;
     

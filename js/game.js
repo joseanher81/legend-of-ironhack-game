@@ -54,8 +54,8 @@ class Game {
       // Draw (only if the game is not over)
       if(!this.gameOver) {
         this.map.draw();
-        this.inventory.draw(this.hero.life);
         this.hero.draw();
+        this.inventory.draw(this.hero.life);
         this.enemies.forEach(enemy => enemy.draw());
       } else {
         // Game is over, check if player press N for new game
