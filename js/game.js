@@ -8,10 +8,14 @@ class Game {
     this.hero;
     this.enemies;
     this.controller;
+    this.gameOverScreen = new Image();
+    this.gameOverScreen.src = "./img/gameover.png";
+    this.gameOver;
   }
 
   init() {
     console.group("Initializing game");
+    this.gameOver = false;
 
     // Initialize controls
     this.controller = new Controller();
@@ -21,7 +25,7 @@ class Game {
     this.map.draw();
 
     // Initialize hero (6 points of life, 1 point of power)
-    this.hero = new Hero(this.ctx, "./img/hero.png", this.map, 6, 1);
+    this.hero = new Hero(this.ctx, "./img/hero.png", this.map, 1, 1);
     this.hero.draw(this.hero.life);
 
     // Initialize inventory
@@ -30,9 +34,11 @@ class Game {
 
     // Initialize enemies array
     this.enemies = [new Enemy(this.ctx, "./img/enemyDevil.png", this.map, 1, 1), new Enemy(this.ctx, "./img/enemyDevil.png", this.map, 1, 1)];
+    //this.enemies = [];
     this.enemies.forEach(enemy => enemy.draw());
 
     // Game loop
+    
     let oldTimeStamp = 0;
     let gameLoop = timeStamp => {
 
@@ -40,24 +46,45 @@ class Game {
       let delta = (timeStamp - oldTimeStamp) / 1000;
       oldTimeStamp = timeStamp;
   
-      // Update
-      this.hero.update(this.controller.keyPressed, delta, this.enemies);
-      this.enemies.forEach(enemy => enemy.update(delta));
+      // Update (only if player is alive)
+      if(this.hero.life > 0) {
+        this.hero.update(this.controller.keyPressed, delta, this.enemies);
+        this.enemies.forEach(enemy => enemy.update(delta));
+      }
 
-      // Draw
-      this.map.draw();
-      this.inventory.draw(this.hero.life);
-      this.hero.draw();
-      this.enemies.forEach(enemy => enemy.draw());
-      
+      // Draw (only if the game is not over)
+      if(!this.gameOver) {
+        this.map.draw();
+        this.inventory.draw(this.hero.life);
+        this.hero.draw();
+        this.enemies.forEach(enemy => enemy.draw());
+      } else {
+        // Game is over, check if player press N for new game
+        console.log("Key pressed " + this.controller.keyPressed );
+        if(this.controller.keyPressed == "N") {
+          location.reload();  
+        }
+      }
+
       //Check heroe death
-      if(this.hero.life <= 0) console.log("Game over");
+      if(this.hero.life <= 0) this.showGameOver();
 
       this.showFps(delta);
       window.requestAnimationFrame(gameLoop);
     }
-
     window.requestAnimationFrame(gameLoop);
+  }
+
+  showGameOver() {
+    console.log("gameover");
+    setTimeout(()=> {
+      this.gameOver = true;
+      this.ctx.save();
+      this.ctx.fillStyle = '#000';
+      this.ctx.fillRect(0, 0, 920, 600);
+      this.ctx.drawImage(this.gameOverScreen, 0, 0, 920, 600); 
+      this.ctx.restore();
+   }, 2000);  // Two seconds delay before black screen
   }
 
   showFps(delta) {
