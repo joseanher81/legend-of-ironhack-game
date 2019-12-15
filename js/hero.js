@@ -1,6 +1,6 @@
 class Hero {
 
-  constructor(ctx, imgSrc, map, life, power, currentWeapon = 'orange', posX = 200, posY = 200, speed = 100, size = 40) {
+  constructor(ctx, imgSrc, map, life, power, currentWeapon = Weapon.weaponTypes['orange'], posX = 200, posY = 200, speed = 100, size = 40) {
     this.ctx = ctx;
     this.map = map;
     this.posX = posX;
@@ -46,7 +46,7 @@ class Hero {
         break;     
       case "space": 
         // Create new fire ball (if it has passed at least 0.5 seconds since last one)
-        if(this.lastWeaponSecs > Weapon.weaponTypes[this.currentWeapon].cadence) {
+        if(this.lastWeaponSecs > this.currentWeapon.cadence) {
           this.weapons.push(new Weapon(this.ctx, this.map, this.currentWeapon, this.posX, this.posY, this.spriteY));
           this.lastWeaponSecs = 0;
         }
@@ -141,7 +141,7 @@ class Hero {
         this.posY < item.posY + (item.size - tuning) && this.posY + (this.size - tuning) > item.posY) {
           // Is 'touching' item so check the type
           if(item.type == "potion") {
-            this.currentWeapon = item.value;
+            this.currentWeapon = Weapon.weaponTypes[item.value];
           }
           if(item.type == "cup") {
             this.life++;

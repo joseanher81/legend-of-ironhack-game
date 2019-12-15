@@ -14,10 +14,10 @@ class Weapon {
     this.spriteX = 0;
     this.spriteY = 0;
     this.spriteRefresh = 0;
-    this.power = Weapon.weaponTypes[type].power;
+    this.power = type.power;
     this.weapon = new Image();
-    this.weapon.src = Weapon.weaponTypes[type].src;
-    this.duration = Weapon.weaponTypes[type].duration; // seconds
+    this.weapon.src = type.src;
+    this.duration = type.duration; // seconds
     this.rotationDegrees = 0;
 
     // The weapon face the same direction as the character
