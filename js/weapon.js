@@ -1,7 +1,7 @@
 class Weapon {
-  static weaponTypes = {'orange': {power: 1, duration: 2, cadence: 1, src: "./img/fireWeaponOrange.png"}, 
-                        'blue': {power: 2, duration: 3, cadence: 0.5, src: "./img/fireWeaponBlue.png"},
-                        'purple': {power: 3, duration: 4, cadence: 0.3, src: "./img/fireWeaponPurple.png"}
+  static weaponTypes = {'orange': {power: 1, duration: 2, cadence: 1, src: "./img/fireWeaponOrange.png", srcInv: "./img/orangeRect.png"}, 
+                        'blue': {power: 2, duration: 3, cadence: 0.5, src: "./img/fireWeaponBlue.png", srcInv: "./img/blueRect.png"},
+                        'purple': {power: 3, duration: 4, cadence: 0.3, src: "./img/fireWeaponPurple.png", srcInv: "./img/purpleRect.png"}
                       };
 
   constructor(ctx, map, type, posX, posY, facing = "down", speed = 150, size = 40) {

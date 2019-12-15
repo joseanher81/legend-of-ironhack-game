@@ -10,13 +10,17 @@ class Inventory {
     this.logo.src = "./img/leyend.png";
     this.hearts = new Image();
     this.hearts.src = "./img/hearts.png";
+    this.weapon = new Image();
+    this.weapon.src = "./img/orangeRectangle.png";
   }
 
-  draw(heroLife) {
+  draw(heroLife, srcInv) {
     let heartsY = 144 - (heroLife * 24);
+    this.weapon.src = srcInv;
     this.ctx.fillStyle = '#000';
     this.ctx.fillRect( this.x, this.y, this.width, this.height);
     this.ctx.drawImage(this.logo, 10, 10, 350, 100); 
     this.ctx.drawImage(this.hearts, 0, heartsY, 72, 24, 700, 48, 72, 24);
+    this.ctx.drawImage(this.weapon, 550, 28, 65, 65);
   }
 }
