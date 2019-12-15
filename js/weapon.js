@@ -33,7 +33,7 @@ class Weapon {
     }
   }
 
-  update(delta) {
+  update(delta, enemies) {
     switch(this.facing) {
       case "left":
         this.posX -= this.speed * delta;
@@ -65,8 +65,22 @@ class Weapon {
        if(this.spriteX > 3) this.spriteX = 0;
      }
 
+     // Check collision with enemies
+     let collision = false;
+     let tuning = 10; // pixels;
+     enemies.forEach((enemy, i, enemyArray) => {
+      if(this.posX < enemy.posX + (enemy.size - tuning) && this.posX + (this.size - tuning) > enemy.posX &&
+        this.posY < enemy.posY + (enemy.size - tuning) && this.posY + (this.size - tuning) > enemy.posY) {
+        // There is collision   
+        enemyArray.splice(i,1);
+        collision = true;
+      } 
+     });
+
      // Decrease duration
      this.duration -= delta;
+     
+     return (this.duration < 0 || collision) ? true : false;
   }
 
   draw() {

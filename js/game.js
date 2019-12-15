@@ -33,8 +33,7 @@ class Game {
     this.inventory.draw();
 
     // Initialize enemies array
-    //this.enemies = [new Enemy(this.ctx, "./img/enemyDevil.png", this.map, 1, 1), new Enemy(this.ctx, "./img/enemyDevil.png", this.map, 1, 1)];
-    this.enemies = [];
+    this.enemies = [new Enemy(this.ctx, "./img/enemyDevil.png", this.map, 1, 1), new Enemy(this.ctx, "./img/enemyDevil.png", this.map, 1, 1)];
     this.enemies.forEach(enemy => enemy.draw());
 
     // Game loop   

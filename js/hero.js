@@ -52,10 +52,8 @@ class Hero {
 
     // Update weapons
     this.weapons.forEach((weapon, i, array) => {
-      weapon.update(delta);
-      if(weapon.duration < 0) { // Delete weapon
-        array.splice(i,1);
-      } 
+      let erase = weapon.update(delta, enemies);
+      if(erase) array.splice(i,1); // delete weapon   
     });
 
     // Check whether there is collision with enemies (uses the current position)
