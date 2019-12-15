@@ -1,18 +1,22 @@
 class Weapon {
-  constructor(ctx, imgSrc, map, power, posX, posY, facing = "down", speed = 150, size = 40) {
+  weaponTypes = {'orange': {power: 1, src: "./img/fireWeaponOrange.png"}, 
+                'blue': {power: 2, src: "./img/fireWeaponBlue.png"},
+                'purple': {power: 3, src: "./img/fireWeaponPurple.png"}
+              };
+
+  constructor(ctx, map, type, posX, posY, facing = "down", speed = 150, size = 40) {
     this.ctx = ctx;
     this.map = map;
     this.posX = posX;
     this.posY = posY;
     this.speed = speed;
     this.size = size;
-    this.power = power;
-    this.weapon = new Image();
-    this.weapon.src = imgSrc;
     this.spriteX = 0;
     this.spriteY = 0;
     this.spriteRefresh = 0;
-    this.power = 1;
+    this.power = this.weaponTypes[type].power;
+    this.weapon = new Image();
+    this.weapon.src = this.weaponTypes[type].src;
     this.duration = 2; // seconds
     this.rotationDegrees = 0;
 
@@ -34,6 +38,7 @@ class Weapon {
   }
 
   update(delta, enemies) {
+    console.log("This power " + this.power);
     switch(this.facing) {
       case "left":
         this.posX -= this.speed * delta;

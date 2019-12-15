@@ -1,6 +1,6 @@
 class Hero {
 
-  constructor(ctx, imgSrc, map, life, power, posX = 200, posY = 200, speed = 100, size = 40) {
+  constructor(ctx, imgSrc, map, life, power, currentWeapon = 'orange', posX = 200, posY = 200, speed = 100, size = 40) {
     this.ctx = ctx;
     this.map = map;
     this.posX = posX;
@@ -15,6 +15,7 @@ class Hero {
     this.life = life;
     this.power = power;
     this.inmunity = 0; // in seconds
+    this.currentWeapon = currentWeapon;
     this.weapons = [];
     this.lastWeaponSecs = 0; // time passed since the last weapon was throwed
   }
@@ -44,7 +45,7 @@ class Hero {
       case "space": 
         // Create new fire ball (if it has passed at least 0.5 seconds since last one)
         if(this.lastWeaponSecs > 0.5) {
-          this.weapons.push(new Weapon(this.ctx, "./img/fireWeapon.png", this.map, 1, this.posX, this.posY, this.spriteY));
+          this.weapons.push(new Weapon(this.ctx, this.map, this.currentWeapon, this.posX, this.posY, this.spriteY));
           this.lastWeaponSecs = 0;
         }
         break;
@@ -66,6 +67,9 @@ class Hero {
       this.posX = futureX;
       this.posY = futureY;
     }
+
+    // Check items on map
+    this.takeItems();
 
     // Sprite animation (with reset)  TODO probably I can do this better
     this.spriteRefresh++;
@@ -126,6 +130,24 @@ class Hero {
     } else {
       this.inmunity -= delta;
     }
+  }
+
+  takeItems() {
+    let tuning = 10; // pixels;
+    this.map.items.forEach((item, i, itemArray) =>{
+        if(this.posX < item.posX + (item.size - tuning) && this.posX + (this.size - tuning) > item.posX &&
+        this.posY < item.posY + (item.size - tuning) && this.posY + (this.size - tuning) > item.posY) {
+          // Is 'touching' item so check the type
+          if(item.type == "potion") {
+            this.currentWeapon = item.value;
+          }
+          if(item.type == "cup") {
+            this.life++;
+            if(this.life > 6) this.life = 6;
+          }
+          itemArray.splice(i,1); // Delete item
+        } 
+    });
   }
 
   draw() {

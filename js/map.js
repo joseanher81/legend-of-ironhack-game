@@ -73,6 +73,8 @@ class Map {
       47 : { walkable: false,	sprite:{x:240,y:200,w:40,h:40}},
       48 : { walkable: false,	sprite:{x:280,y:200,w:40,h:40}},   
     };
+    this.items = [new Item(400, 500, "potion", "blue", "./img/bluePotion.png"),
+                  new Item(850, 300, "potion", "purple", "./img/purplePotion.png")]; // TODO refactor
   }
 
   /* draw() {
@@ -81,16 +83,6 @@ class Map {
       this.drawMap();
     }.bind(this);
   } */
-
-  draw() {
-    //console.log("Draw map");
-    for(let col = 0; col < this.mapCols; col++) {
-      for(let row = 0; row < this.mapRows; row++) {
-        let tile = this.tileTypes[this.getTile(col, row)];
-        this.ctx.drawImage(this.tileSheet, tile.sprite.x, tile.sprite.y, tile.sprite.w, tile.sprite.h, col * this.tileSize, row * this.tileSize + this.startY, this.tileSize, this.tileSize);
-      }
-    }
-  }
 
   getTile(col, row) {
     return this.gameMap[row * this.mapCols + col];
@@ -108,5 +100,19 @@ class Map {
     
     //console.log("COlumna: " + col + " Fila: " +row);
     return this.getTile(col, row);
+  }
+
+  draw() {
+    // Draw map
+    for(let col = 0; col < this.mapCols; col++) {
+      for(let row = 0; row < this.mapRows; row++) {
+        let tile = this.tileTypes[this.getTile(col, row)];
+        this.ctx.drawImage(this.tileSheet, tile.sprite.x, tile.sprite.y, tile.sprite.w, tile.sprite.h, col * this.tileSize, row * this.tileSize + this.startY, this.tileSize, this.tileSize);
+      }
+    }
+
+    // Draw items on map
+    this.items.forEach(item => item.draw(this.ctx));
+    //console.log(this.items[0])
   }
 }
