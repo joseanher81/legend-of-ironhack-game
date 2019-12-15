@@ -21,6 +21,8 @@ class Hero {
   }
 
   update(movement, delta, enemies) {
+    console.log(this.currentWeapon);
+    //console.log(Weapon.weaponTypes[this.currentWeapon].duration);
     this.lastWeaponSecs += delta;
 
     let futureX = this.posX;
@@ -44,7 +46,7 @@ class Hero {
         break;     
       case "space": 
         // Create new fire ball (if it has passed at least 0.5 seconds since last one)
-        if(this.lastWeaponSecs > 0.5) {
+        if(this.lastWeaponSecs > Weapon.weaponTypes[this.currentWeapon].cadence) {
           this.weapons.push(new Weapon(this.ctx, this.map, this.currentWeapon, this.posX, this.posY, this.spriteY));
           this.lastWeaponSecs = 0;
         }

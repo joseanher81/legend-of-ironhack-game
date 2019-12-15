@@ -1,8 +1,8 @@
 class Weapon {
-  weaponTypes = {'orange': {power: 1, src: "./img/fireWeaponOrange.png"}, 
-                'blue': {power: 2, src: "./img/fireWeaponBlue.png"},
-                'purple': {power: 3, src: "./img/fireWeaponPurple.png"}
-              };
+  static weaponTypes = {'orange': {power: 1, duration: 2, cadence: 1, src: "./img/fireWeaponOrange.png"}, 
+                        'blue': {power: 2, duration: 3, cadence: 0.5, src: "./img/fireWeaponBlue.png"},
+                        'purple': {power: 3, duration: 4, cadence: 0.3, src: "./img/fireWeaponPurple.png"}
+                      };
 
   constructor(ctx, map, type, posX, posY, facing = "down", speed = 150, size = 40) {
     this.ctx = ctx;
@@ -14,10 +14,10 @@ class Weapon {
     this.spriteX = 0;
     this.spriteY = 0;
     this.spriteRefresh = 0;
-    this.power = this.weaponTypes[type].power;
+    this.power = Weapon.weaponTypes[type].power;
     this.weapon = new Image();
-    this.weapon.src = this.weaponTypes[type].src;
-    this.duration = 2; // seconds
+    this.weapon.src = Weapon.weaponTypes[type].src;
+    this.duration = Weapon.weaponTypes[type].duration; // seconds
     this.rotationDegrees = 0;
 
     // The weapon face the same direction as the character
