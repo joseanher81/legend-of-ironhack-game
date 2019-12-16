@@ -74,7 +74,8 @@ class Map {
       48 : { walkable: false,	sprite:{x:280,y:200,w:40,h:40}},   
     };
     this.items = [new Item(400, 500, "potion", "blue", "./img/bluePotion.png"),
-                  new Item(850, 300, "potion", "purple", "./img/purplePotion.png")]; // TODO refactor
+                  new Item(850, 300, "potion", "purple", "./img/purplePotion.png"),
+                  new Item(800, 160, "life", 2, "./img/cup.png")]; // TODO refactor
   }
 
   /* draw() {

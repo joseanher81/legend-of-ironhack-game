@@ -21,7 +21,7 @@ class Hero {
   }
 
   update(movement, delta, enemies) {
-    console.log(this.currentWeapon);
+    //console.log(this.currentWeapon);
     //console.log(Weapon.weaponTypes[this.currentWeapon].duration);
     this.lastWeaponSecs += delta;
 
@@ -143,8 +143,8 @@ class Hero {
           if(item.type == "potion") {
             this.currentWeapon = Weapon.weaponTypes[item.value];
           }
-          if(item.type == "cup") {
-            this.life++;
+          if(item.type == "life") {
+            this.life += item.value;
             if(this.life > 6) this.life = 6;
           }
           itemArray.splice(i,1); // Delete item
