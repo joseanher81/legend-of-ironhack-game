@@ -1,6 +1,6 @@
 class Hero {
 
-  constructor(ctx, imgSrc, map, life, power, currentWeapon = Weapon.weaponTypes['orange'], posX = 200, posY = 200, speed = 100, size = 40) {
+  constructor(ctx, map, imgSrc, life, posX, posY, currentWeapon = Weapon.weaponTypes['orange'], speed = 100, size = 40) {
     this.ctx = ctx;
     this.map = map;
     this.posX = posX;
@@ -13,7 +13,6 @@ class Hero {
     this.spriteY = 0;
     this.spriteRefresh = 0;
     this.life = life;
-    this.power = power;
     this.inmunity = 0; // in seconds
     this.currentWeapon = currentWeapon;
     this.weapons = [];

@@ -6,7 +6,7 @@ class Game {
     this.map;
     this.inventory;
     this.hero;
-    this.enemies;
+    this.enemies = [];
     this.controller;
     this.gameOverScreen = new Image();
     this.gameOverScreen.src = "./img/gameover.png";
@@ -24,16 +24,17 @@ class Game {
     this.map = new Map(this.ctx);
     this.map.draw();
 
-    // Initialize hero (6 points of life, 1 point of power)
-    this.hero = new Hero(this.ctx, "./img/hero.png", this.map, 6, 1);
-    this.hero.draw(this.hero.life);
+    // Initialize hero from map
+    let heroeMap = this.map.heroe;
+    this.hero = new Hero(this.ctx, this.map, heroeMap.imgSrc, heroeMap.life, heroeMap.posX, heroeMap.posY);
+    this.hero.draw();
 
     // Initialize inventory
     this.inventory = new Inventory(this.ctx);
     this.inventory.draw(this.hero.life, this.hero.currentWeapon.srcInv);
 
-    // Initialize enemies array
-    this.enemies = [new Enemy(this.ctx, "./img/enemyDevil.png", this.map, 1, 1), new Enemy(this.ctx, "./img/enemyDevil.png", this.map, 1, 1)];
+    // Load enemies from map
+    this.map.enemies.forEach(enemy => this.enemies.push(new Enemy(this.ctx, this.map, enemy.imgSrc, enemy.life, enemy.power, enemy.posX, enemy.posY, enemy.speed, enemy.size)))
     this.enemies.forEach(enemy => enemy.draw());
 
     // Game loop   

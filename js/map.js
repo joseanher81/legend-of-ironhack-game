@@ -78,14 +78,12 @@ class Map {
                   new Item(850, 300, Item.itemTypes['purplePotion']),
                   new Item(800, 160, Item.itemTypes['cupLife'])
                   ];
+    this.enemies = [{posX: 200, posY: 250, life: 1, power: 1, speed: 50, size: 40, imgSrc: "./img/enemyDevil.png"},
+                    {posX: 300, posY: 340, life: 1, power: 1, speed: 50, size: 40, imgSrc: "./img/enemyDevil.png"},
+                    {posX: 450, posY: 160, life: 1, power: 1, speed: 50, size: 40, imgSrc: "./img/enemyDevil.png"}
+                ];
+    this.heroe = { life: 6, posX: 800, posY: 350, imgSrc: "./img/hero.png"};            
   }
-
-  /* draw() {
-    // Needed to be sure the tileSheet is already loaded before trying to draw it
-    this.tileSheet.onload = function() {
-      this.drawMap();
-    }.bind(this);
-  } */
 
   getTile(col, row) {
     return this.gameMap[row * this.mapCols + col];

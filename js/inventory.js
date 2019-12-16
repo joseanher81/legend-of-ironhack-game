@@ -11,7 +11,7 @@ class Inventory {
     this.hearts = new Image();
     this.hearts.src = "./img/hearts.png";
     this.weapon = new Image();
-    this.weapon.src = "./img/orangeRectangle.png";
+    this.weapon.src = Weapon.weaponTypes['orange'].srcInv;
   }
 
   draw(heroLife, srcInv) {
