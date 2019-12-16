@@ -3,7 +3,7 @@ class Map {
   constructor(ctx, tileSize = 40, mapCols = 23, mapRows = 12, startX = 0, startY = 120) {
     this.ctx = ctx;
     this.gameMap = [ 
-     11, 11, 11, 11, 13, 11, 11,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,
+     11, 11, 11, 11, 99, 11, 11,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,
      11,  9,  9,  9, 13, 11,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,
       9,  9,  9,  9, 13,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9, 11,  9,  9,  9, 10,  9,  9,
       9,  9,  9,  9, 13,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9, 10, 10,  9,  9,
@@ -71,11 +71,13 @@ class Map {
       45 : { walkable: false,	sprite:{x:160,y:200,w:40,h:40}},
       46 : { walkable: false,	sprite:{x:200,y:200,w:40,h:40}},
       47 : { walkable: false,	sprite:{x:240,y:200,w:40,h:40}},
-      48 : { walkable: false,	sprite:{x:280,y:200,w:40,h:40}},   
+      48 : { walkable: false,	sprite:{x:280,y:200,w:40,h:40}},
+      99 : { walkable: true,  sprite:{x:160,y:40,w:40,h:40}}   // 99 will be our exit tile
     };
-    this.items = [new Item(400, 500, "potion", "blue", "./img/bluePotion.png"),
-                  new Item(850, 300, "potion", "purple", "./img/purplePotion.png"),
-                  new Item(800, 160, "life", 2, "./img/cup.png")]; // TODO refactor
+    this.items = [new Item(400, 500, Item.itemTypes['bluePotion']),
+                  new Item(850, 300, Item.itemTypes['purplePotion']),
+                  new Item(800, 160, Item.itemTypes['cupLife'])
+                  ];
   }
 
   /* draw() {

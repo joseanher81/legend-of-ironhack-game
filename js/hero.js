@@ -62,13 +62,16 @@ class Hero {
     // Check whether there is collision with enemies (uses the current position)
     this.collisionWithEnemies(enemies, delta);
 
-    // TODO Check death 
-    
+    // Is in an exit tile?
+    if(this.map.getTileAtPositionXY(this.posX + (this.size/2), this.posY + (this.size/2) - this.map.startY) == 99) console.log("EXIT!!!!");
+
     // Check whether future position is valid
     if(!this.collision(futureX, futureY)) {
       this.posX = futureX;
       this.posY = futureY;
     }
+
+   
 
     // Check items on map
     this.takeItems();

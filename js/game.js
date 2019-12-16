@@ -30,7 +30,7 @@ class Game {
 
     // Initialize inventory
     this.inventory = new Inventory(this.ctx);
-    this.inventory.draw();
+    this.inventory.draw(this.hero.life, this.hero.currentWeapon.srcInv);
 
     // Initialize enemies array
     this.enemies = [new Enemy(this.ctx, "./img/enemyDevil.png", this.map, 1, 1), new Enemy(this.ctx, "./img/enemyDevil.png", this.map, 1, 1)];
