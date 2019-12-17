@@ -62,7 +62,7 @@ class Hero {
     this.collisionWithEnemies(enemies, delta);
 
     // Is in an exit tile?
-    if(this.map.getTileAtPositionXY(this.posX + (this.size/2), this.posY + (this.size/2) - this.map.startY) == 99) console.log("EXIT!!!!");
+    //if(this.map.getTileAtPositionXY(this.posX + (this.size/2), this.posY + (this.size/2) - this.map.startY) == 99) console.log("EXIT!!!!");
 
     // Check whether future position is valid
     if(!this.collision(futureX, futureY)) {

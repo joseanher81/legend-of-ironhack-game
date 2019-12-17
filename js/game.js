@@ -20,22 +20,7 @@ class Game {
     // Initialize controls
     this.controller = new Controller();
 
-    // Initialize map
-    this.map = new Map(this.ctx);
-    this.map.draw();
-
-    // Initialize hero from map
-    let heroeMap = this.map.heroe;
-    this.hero = new Hero(this.ctx, this.map, heroeMap.imgSrc, heroeMap.life, heroeMap.posX, heroeMap.posY);
-    this.hero.draw();
-
-    // Initialize inventory
-    this.inventory = new Inventory(this.ctx);
-    this.inventory.draw(this.hero.life, this.hero.currentWeapon.srcInv);
-
-    // Load enemies from map
-    this.map.enemies.forEach(enemy => this.enemies.push(new Enemy(this.ctx, this.map, enemy.imgSrc, enemy.life, enemy.power, enemy.posX, enemy.posY, enemy.speed, enemy.size)))
-    this.enemies.forEach(enemy => enemy.draw());
+    this.initialize(map01);
 
     // Game loop   
     let oldTimeStamp = 0;
@@ -68,10 +53,35 @@ class Game {
       //Check heroe death
       if(this.hero.life <= 0) this.showGameOver();
 
+      // Is the heroe in an exit tile? Then LOAD another map
+      if(this.map.getTileAtPositionXY(this.hero.posX + (this.hero.size/2), this.hero.posY + (this.hero.size/2) - this.map.startY) == 99) this.initialize(map02);
+
+
       this.showFps(delta);
       window.requestAnimationFrame(gameLoop);
     }
     window.requestAnimationFrame(gameLoop);
+  }
+
+  initialize(mapName) {
+    // Initialize map
+    this.map = new Map(this.ctx, mapName);
+    console.log(this.map);
+    this.map.draw();
+    
+    // Initialize hero from map
+    let heroeMap = this.map.heroe;
+    this.hero = new Hero(this.ctx, this.map, heroeMap.imgSrc, heroeMap.life, heroeMap.posX, heroeMap.posY);
+    this.hero.draw();
+    
+    // Initialize inventory
+    this.inventory = new Inventory(this.ctx);
+    this.inventory.draw(this.hero.life, this.hero.currentWeapon.srcInv);
+    
+    // Load enemies from map
+    this.enemies = []; // reset array first
+    this.map.enemies.forEach(enemy => this.enemies.push(new Enemy(this.ctx, this.map, enemy.imgSrc, enemy.life, enemy.power, enemy.posX, enemy.posY, enemy.speed, enemy.size)))
+    this.enemies.forEach(enemy => enemy.draw());
   }
 
   showGameOver() {
