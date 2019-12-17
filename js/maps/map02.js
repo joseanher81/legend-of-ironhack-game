@@ -5,6 +5,8 @@ map02 = `{
 	"startX": 0,
 	"startY": 120,
 	"tileSheetSrc": "./img/tileset3.png",
+	"nextMap": "map03",
+	"prevMap": "map01",
 	"items":[{"posX":650, "posY":200, "name":"purplePotion"}],
 	"enemies": [{"posX": 500, "posY": 180, "life": 1, "power": 1, "speed": 50, "size": 40, "imgSrc": "./img/enemyDevil.png"},
 								 {"posX": 400, "posY": 440, "life": 1, "power": 1, "speed": 50, "size": 40, "imgSrc": "./img/enemyDevil.png"}

@@ -14,7 +14,8 @@ class Map {
     this.tileTypes = jsonMap.tileTypes;
     this.enemies = jsonMap.enemies;
     this.heroe = jsonMap.heroe;
-    this.items = this.loadItems(jsonMap.items);            
+    this.items = this.loadItems(jsonMap.items);
+    this.nextMap = jsonMap.nextMap;            
   }
 
   getTile(col, row) {

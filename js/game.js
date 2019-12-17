@@ -20,7 +20,7 @@ class Game {
     // Initialize controls
     this.controller = new Controller();
 
-    this.initialize(map01);
+    this.initialize("map01");
 
     // Game loop   
     let oldTimeStamp = 0;
@@ -54,7 +54,7 @@ class Game {
       if(this.hero.life <= 0) this.showGameOver();
 
       // Is the heroe in an exit tile? Then LOAD another map
-      if(this.map.getTileAtPositionXY(this.hero.posX + (this.hero.size/2), this.hero.posY + (this.hero.size/2) - this.map.startY) == 99) this.initialize(map02);
+      if(this.map.getTileAtPositionXY(this.hero.posX + (this.hero.size/2), this.hero.posY + (this.hero.size/2) - this.map.startY) == 99) this.initialize(this.map.nextMap);
 
 
       this.showFps(delta);
@@ -65,7 +65,7 @@ class Game {
 
   initialize(mapName) {
     // Initialize map
-    this.map = new Map(this.ctx, mapName);
+    this.map = new Map(this.ctx, window[mapName]);  // we use window to transform a string variable name to a proper variable
     console.log(this.map);
     this.map.draw();
     
