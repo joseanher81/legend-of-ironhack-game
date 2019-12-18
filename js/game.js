@@ -54,8 +54,8 @@ class Game {
       if(this.hero.life <= 0) this.showGameOver();
 
       // Is the heroe in an exit tile? Then LOAD another map (previous or next)
-      if(this.map.getTileAtPositionXY(this.hero.posX + (this.hero.size/2), this.hero.posY + (this.hero.size/2) - this.map.startY) == 99) this.initialize(this.map.nextMap);
-      if(this.map.getTileAtPositionXY(this.hero.posX + (this.hero.size/2), this.hero.posY + (this.hero.size/2) - this.map.startY) == 0) this.initialize(this.map.prevMap);
+      if(this.map.getTileAtPositionXY(this.hero.posX + (this.hero.size/2), this.hero.posY + (this.hero.size/2) - this.map.startY) == 99) this.initialize(this.map.nextMap, false);
+      if(this.map.getTileAtPositionXY(this.hero.posX + (this.hero.size/2), this.hero.posY + (this.hero.size/2) - this.map.startY) == 0) this.initialize(this.map.prevMap, true);
 
       this.showFps(delta);
       window.requestAnimationFrame(gameLoop);
@@ -63,14 +63,14 @@ class Game {
     window.requestAnimationFrame(gameLoop);
   }
 
-  initialize(mapName) {
+  initialize(mapName, back) {
     // Initialize map
     this.map = new Map(this.ctx, window[mapName]);  // we use window to transform a string variable name to a proper variable
     this.map.draw();
     
     // Initialize hero from map
     let heroeMap = this.map.heroe;
-    this.hero = new Hero(this.ctx, this.map, heroeMap.imgSrc, heroeMap.life, heroeMap.posX, heroeMap.posY);
+    this.hero = new Hero(this.ctx, this.map, heroeMap.imgSrc, heroeMap.life, back ? heroeMap.backPosX : heroeMap.startPosX, back ? heroeMap.backPosY : heroeMap.startPosY);
     this.hero.draw();
     
     // Initialize inventory

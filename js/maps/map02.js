@@ -11,7 +11,7 @@ map02 = `{
 	"enemies": [{"posX": 500, "posY": 180, "life": 1, "power": 1, "speed": 50, "size": 40, "imgSrc": "./img/enemyDevil.png"},
 								 {"posX": 400, "posY": 440, "life": 1, "power": 1, "speed": 50, "size": 40, "imgSrc": "./img/enemyDevil.png"}
 							],
-	"heroe": {"life": 6, "posX": 160, "posY": 520, "imgSrc": "./img/hero.png"}, 			 
+	"heroe": {"life": 6, "startPosX": 160, "startPosY": 520, "imgSrc": "./img/hero.png"}, 			 
 	"gameMap": [ 
 		9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,
 		9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,
