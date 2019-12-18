@@ -1,18 +1,7 @@
-class Hero {
+class Hero extends Character {
 
-  constructor(ctx, map, imgSrc, life, posX, posY, currentWeapon = Weapon.weaponTypes['orange'], speed = 100, size = 40) {
-    this.ctx = ctx;
-    this.map = map;
-    this.posX = posX;
-    this.posY = posY;
-    this.speed = speed;
-    this.size = size;
-    this.character = new Image();
-    this.character.src = imgSrc;
-    this.spriteX = 0;
-    this.spriteY = 0;
-    this.spriteRefresh = 0;
-    this.life = life;
+  constructor(ctx, map, imgSrc, life, posX, posY, speed = 100, size = 40, currentWeapon = Weapon.weaponTypes['orange']) {
+	super(ctx, map, imgSrc, life, posX, posY, speed, size);
     this.inmunity = 0; // in seconds
     this.currentWeapon = currentWeapon;
     this.weapons = [];
@@ -20,8 +9,6 @@ class Hero {
   }
 
   update(movement, delta, enemies) {
-    //console.log(this.currentWeapon);
-    //console.log(Weapon.weaponTypes[this.currentWeapon].duration);
     this.lastWeaponSecs += delta;
 
     let futureX = this.posX;
@@ -61,16 +48,11 @@ class Hero {
     // Check whether there is collision with enemies (uses the current position)
     this.collisionWithEnemies(enemies, delta);
 
-    // Is in an exit tile?
-    //if(this.map.getTileAtPositionXY(this.posX + (this.size/2), this.posY + (this.size/2) - this.map.startY) == 99) console.log("EXIT!!!!");
-
     // Check whether future position is valid
     if(!this.collision(futureX, futureY)) {
       this.posX = futureX;
       this.posY = futureY;
     }
-
-   
 
     // Check items on map
     this.takeItems();
@@ -85,32 +67,6 @@ class Hero {
 
     if(movement == "") this.spriteX = 0; // Idle state
 
-  }
-
-  collision(x, y) {
-    // fine tuning coordinates for better collisions and "y" taking into account score/inventory bar
-    let tuning = 2; // pixels
-    y -= this.map.startY;
-
-    // Future tiles at every vertex
-    let tileAtTopLeft = this.map.getTileAtPositionXY(x + tuning, y + tuning);
-    let tileAtTopRight = this.map.getTileAtPositionXY(x + this.map.tileSize - tuning, y + tuning);
-    let tileAtBottomLeft = this.map.getTileAtPositionXY(x + tuning, y + this.map.tileSize - tuning);
-    let tileAtBottomRight = this.map.getTileAtPositionXY(x - tuning + this.map.tileSize, y + this.map.tileSize - tuning);
-
-    let colliding = false;
-
-    // Check tile walkability
-    if(!this.map.tileTypes[tileAtTopLeft].walkable || !this.map.tileTypes[tileAtTopRight].walkable || !this.map.tileTypes[tileAtBottomLeft].walkable || !this.map.tileTypes[tileAtBottomRight].walkable) {
-      colliding = true;
-    }
-
-    // Check collision with bounds
-    if((x < 0) || (x > (this.map.mapCols - 1) * this.map.tileSize) || (y < 0)|| (y > (this.map.mapRows - 1) * this.map.tileSize)) {
-      colliding = true;
-    }
-
-    return colliding;
   }
 
   collisionWithEnemies(enemies, delta) {
@@ -154,7 +110,7 @@ class Hero {
     });
   }
 
-  draw() {
+  draw() { // Override
     // Update weapons
     this.weapons.forEach(weapon => weapon.draw());
 

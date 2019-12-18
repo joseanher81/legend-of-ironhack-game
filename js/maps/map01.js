@@ -7,11 +7,11 @@ map01 = `{
 	"tileSheetSrc": "./img/tileset3.png",
 	"nextMap": "map02",
 	"prevMap": "",
-	"items":[{"posX":400, "posY":500, "name":"bluePotion"}, {"posX":850, "posY":300, "name":"purplePotion"}, {"posX":800, "posY":160, "name":"cupLife"}],
+	"items":[{"posX":400, "posY":500, "name":"purplePotion"}, {"posX":850, "posY":300, "name":"bluePotion"}, {"posX":800, "posY":160, "name":"cupLife"}],
 	"enemies": [{"posX": 200, "posY": 250, "life": 1, "power": 1, "speed": 50, "size": 40, "imgSrc": "./img/enemyDevil.png"},
                  {"posX": 300, "posY": 340, "life": 1, "power": 1, "speed": 50, "size": 40, "imgSrc": "./img/enemyDevil.png"},
                  {"posX": 450, "posY": 160, "life": 1, "power": 1, "speed": 50, "size": 40, "imgSrc": "./img/enemyDevil.png"}],
-	"heroe": {"life": 6, "posX": 200, "posY": 200, "imgSrc": "./img/hero.png"}, 			 
+	"heroe": {"life": 6, "posX": 800, "posY": 350, "imgSrc": "./img/hero.png"}, 			 
 	"gameMap": [ 
      11, 11, 11, 11, 99, 11, 11,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,
      11,  9,  9,  9, 13, 11,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,

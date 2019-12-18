@@ -79,7 +79,7 @@ class Game {
     
     // Load enemies from map
     this.enemies = []; // reset array first
-    this.map.enemies.forEach(enemy => this.enemies.push(new Enemy(this.ctx, this.map, enemy.imgSrc, enemy.life, enemy.power, enemy.posX, enemy.posY, enemy.speed, enemy.size)))
+    this.map.enemies.forEach(enemy => this.enemies.push(new Enemy(this.ctx, this.map, enemy.imgSrc, enemy.life, enemy.posX, enemy.posY, enemy.power, enemy.speed, enemy.size)))
     this.enemies.forEach(enemy => enemy.draw());
   }
 
