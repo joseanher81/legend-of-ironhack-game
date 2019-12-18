@@ -1,6 +1,7 @@
 class Map {
 
   constructor(ctx, mapName) {
+    console.log("Loading map " + mapName);
     let jsonMap = Utils.loadJson(mapName);
     this.ctx = ctx;
     this.gameMap = jsonMap.gameMap;
@@ -15,7 +16,8 @@ class Map {
     this.enemies = jsonMap.enemies;
     this.heroe = jsonMap.heroe;
     this.items = this.loadItems(jsonMap.items);
-    this.nextMap = jsonMap.nextMap;            
+    this.nextMap = jsonMap.nextMap;
+    this.prevMap = jsonMap.prevMap;          
   }
 
   getTile(col, row) {

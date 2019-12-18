@@ -53,9 +53,9 @@ class Game {
       //Check heroe death
       if(this.hero.life <= 0) this.showGameOver();
 
-      // Is the heroe in an exit tile? Then LOAD another map
+      // Is the heroe in an exit tile? Then LOAD another map (previous or next)
       if(this.map.getTileAtPositionXY(this.hero.posX + (this.hero.size/2), this.hero.posY + (this.hero.size/2) - this.map.startY) == 99) this.initialize(this.map.nextMap);
-
+      if(this.map.getTileAtPositionXY(this.hero.posX + (this.hero.size/2), this.hero.posY + (this.hero.size/2) - this.map.startY) == 0) this.initialize(this.map.prevMap);
 
       this.showFps(delta);
       window.requestAnimationFrame(gameLoop);
@@ -66,7 +66,6 @@ class Game {
   initialize(mapName) {
     // Initialize map
     this.map = new Map(this.ctx, window[mapName]);  // we use window to transform a string variable name to a proper variable
-    console.log(this.map);
     this.map.draw();
     
     // Initialize hero from map
