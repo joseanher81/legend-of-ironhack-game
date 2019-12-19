@@ -1,8 +1,8 @@
-class Enemy extends Character{
+class EnemyDevil extends Character{
 
   constructor(ctx, map, imgSrc, life, posX, posY, power, speed = 50, size = 40) {
-	super(ctx, map, imgSrc, life, posX, posY, speed, size);
-	this.moveDirection = this.randomDirection();
+	  super(ctx, map, imgSrc, life, posX, posY, speed, size);
+	  this.moveDirection = this.randomDirection();
     this.moveDirectionCount = 0;
     this.power = power;
   }
