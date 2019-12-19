@@ -8,7 +8,7 @@ map03 = `{
 	"nextMap": "",
 	"prevMap": "map02",
 	"items":[{"posX":850, "posY":200, "name":"purplePotion"}, {"posX":800, "posY":160, "name":"cupLife"}],
-	"enemies": [{"posX": 500, "posY": 180, "life": 10, "power": 3, "speed": 50, "size": 40, "imgSrc": "./img/enemyDevil.png", "type": "boss"}],
+	"enemies": [{"posX": 500, "posY": 180, "life": 10, "power": 3, "speed": 50, "size": 80, "imgSrc": "./img/bossNormal2.png", "type": "boss"}],
 	"heroe": {"life": 6, "startPosX": 280, "startPosY": 520, "imgSrc": "./img/hero.png"}, 			 
 	"gameMap": [ 
 		2,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  5,

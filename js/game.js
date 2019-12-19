@@ -57,7 +57,7 @@ class Game {
       if(this.map.getTileAtPositionXY(this.hero.posX + (this.hero.size/2), this.hero.posY + (this.hero.size/2) - this.map.startY) == 99) this.initialize(this.map.nextMap, false);
       if(this.map.getTileAtPositionXY(this.hero.posX + (this.hero.size/2), this.hero.posY + (this.hero.size/2) - this.map.startY) == 0) this.initialize(this.map.prevMap, true);
 
-      this.showFps(delta);
+      //this.showFps(delta);
       window.requestAnimationFrame(gameLoop);
     }
     window.requestAnimationFrame(gameLoop);

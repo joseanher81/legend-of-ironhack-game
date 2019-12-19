@@ -42,6 +42,6 @@ class Character {
 	}
 	
 	draw() {
-		this.ctx.drawImage(this.character, this.spriteX * this.size, this.spriteY * this.size, 40, 40, this.posX, this.posY, this.size, this.size);
+		this.ctx.drawImage(this.character, this.spriteX * this.size, this.spriteY * this.size, this.size, this.size, this.posX, this.posY, this.size, this.size);
 	}
 }
