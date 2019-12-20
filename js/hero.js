@@ -1,9 +1,9 @@
 class Hero extends Character {
 
-  constructor(ctx, map, imgSrc, life, posX, posY, speed = 100, size = 40, currentWeapon = Weapon.weaponTypes['orange']) {
+  constructor(ctx, map, imgSrc, life, posX, posY, currentWeapon, speed = 100, size = 40) {
 	super(ctx, map, imgSrc, life, posX, posY, speed, size);
     this.inmunity = 0; // in seconds
-    this.currentWeapon = currentWeapon;
+    this.currentWeapon = (currentWeapon== undefined) ? Weapon.weaponTypes['orange'] : currentWeapon; // basic weapon by default
     this.weapons = [];
     this.lastWeaponSecs = 0; // time passed since the last weapon was throwed
   }

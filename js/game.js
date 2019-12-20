@@ -74,7 +74,7 @@ class Game {
     
     // Initialize hero from map
     let heroeMap = this.map.heroe;
-    this.hero = new Hero(this.ctx, this.map, heroeMap.imgSrc, heroeMap.life, back ? heroeMap.backPosX : heroeMap.startPosX, back ? heroeMap.backPosY : heroeMap.startPosY);
+    this.hero = new Hero(this.ctx, this.map, heroeMap.imgSrc, (this.hero != undefined) ? this.hero.life : heroeMap.life, back ? heroeMap.backPosX : heroeMap.startPosX, back ? heroeMap.backPosY : heroeMap.startPosY, (this.hero != undefined) ? this.hero.currentWeapon : undefined);
     this.hero.draw();
     
     // Initialize inventory
