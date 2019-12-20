@@ -6,6 +6,7 @@ The storyline of this state-of-the-art masterpiece is deep and complex, reflecti
 There is a girl (we may call her Lucy) that travels through the dangerous lands of _Strawberry Fields_, where nothing is real... except the stupidity of the enemies' AI.
 Lucy kills those little bastards throwing fireballs with her hands -or vomiting them through her mouth, since the sprite is pretty awful.
 
+![gifreadme](https://user-images.githubusercontent.com/23436377/71298056-67a9ea00-2386-11ea-9daa-7460135c4dad.gif)
 
 ## Controls
 You can play this monstruoisity with the keypad or your imagination _(Note: imagination not supported on current version)_.
@@ -53,13 +54,13 @@ Purple fireball
 
 People are stupid and lose many things during picnics. Check the ground for useful items:
 
+![purplePotion](https://user-images.githubusercontent.com/23436377/71297221-e00eac00-2382-11ea-9f1c-b69f37978a13.png)
+
+Potions - Give Lucy the ability of throwing fireballs of the same color (lovely)
+
 ![cup](https://user-images.githubusercontent.com/23436377/71297155-a0e05b00-2382-11ea-9fd1-1436d7d6932e.png)
 
 Cup - Increases life and risk of having liver cirrhosis 
-
-![purplePotion](https://user-images.githubusercontent.com/23436377/71297221-e00eac00-2382-11ea-9f1c-b69f37978a13.png)
-
-Potions - Give Lucy the ability of throwing fireballs of the same color
 
 ### Minimum requirements:
 A quantum computer.
@@ -70,7 +71,6 @@ Two quantum computers.
 ### Acknowledgement
 I wish to express my gratitude and my sincere affection to everybody involved in this project, specially to myself. Without me this would not have been possible. Thank me!
 
-JH
 
 ## Map template
 This is a generic map template:
