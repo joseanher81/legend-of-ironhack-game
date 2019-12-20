@@ -1,4 +1,4 @@
-##Story
+## Story
 **Legend of Ironhack** is an epic old-style rpg triple A game (Absurd, Abominable & Awful).
 
 The storyline of this state-of-the-art masterpiece is deep and complex, reflecting the moral decay of postmodern capitalist societies.
@@ -7,7 +7,7 @@ There is a girl (we may call her Lucy) that travels through the dangerous lands 
 Lucy kills those little bastards throwing fireballs with her hands -or vomiting them through her mouth, since the sprite is pretty awful.
 
 
-##Controls
+## Controls
 You can play this monstruoisity with the keypad or your imagination _(Note: imagination not supported on current version)_.
 
 ![controls](https://user-images.githubusercontent.com/23436377/71297565-4c3ddf80-2384-11ea-9a83-9a238bde6577.png)
@@ -16,7 +16,7 @@ Use arrow buttons for direction and Space for fire
 
 You also may press **"R"** but it's up to you.
 
-##The Characters
+## The Characters
 
 ![Captura de pantalla 2019-12-20 23 29 38](https://user-images.githubusercontent.com/23436377/71296838-527e8c80-2381-11ea-8ab2-eb3f4f043e7e.png)
 
@@ -34,7 +34,7 @@ This is the final boss (half retarded)
 
 This is a random picture of a cat
 
-##Fireballs
+## Fireballs
 There are 3 types of fireballs. From worst to best:
 
 ![orangeRect](https://user-images.githubusercontent.com/23436377/71297063-33342f00-2382-11ea-9369-e37506be70f5.png)
@@ -49,7 +49,7 @@ Blue fireball
 
 Purple fireball
 
-##Items
+## Items
 
 People are stupid and lose many things during picnics. Check the ground for useful items:
 
@@ -61,21 +61,21 @@ Cup - Increases life and risk of having liver cirrhosis
 
 Potions - Give Lucy the ability of throwing fireballs of the same color
 
-###Minimum requirements:
+### Minimum requirements:
 A quantum computer.
 
-###Recommended requirements:
+### Recommended requirements:
 Two quantum computers.
 
-###Acknowledgement
+### Acknowledgement
 I wish to express my gratitude and my sincere affection to everybody involved in this project, specially to myself. Without me this would not have been possible. Thank me!
 
 JH
 
-##Map template
+## Map template
 This is a generic map template:
 
-```
+```json
 {
 	"tileSize": 40,
 	"mapCols": 23,
