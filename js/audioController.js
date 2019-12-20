@@ -58,9 +58,15 @@ class AudioController {
   playItem() {
     this.item.play();
   }
-  
+
   stopBackground() {
      this.bckgrMusic.pause();
+  }
+
+  changeBackground(src) {
+    this.bckgrMusic.pause();
+    this.bckgrMusic.src = src;
+    this.bckgrMusic.play();
   }
 
 }

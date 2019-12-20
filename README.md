@@ -50,6 +50,8 @@ Blue fireball
 
 Purple fireball
 
+And for God sake, never press "R" during the game.
+
 ## Items
 
 People are stupid and lose many things during picnics. Check the ground for useful items:
@@ -67,6 +69,8 @@ A quantum computer.
 
 ### Recommended requirements:
 Two quantum computers.
+
+This is the last time I told you, don't press "R" or your soul and hips will be lost.
 
 ### Acknowledgement
 I wish to express my gratitude and my sincere affection to everybody involved in this project, specially to myself. Without me this would not have been possible. Thank me!

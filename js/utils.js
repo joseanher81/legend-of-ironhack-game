@@ -9,6 +9,8 @@ class Utils {
         return new EnemyDevil(ctx, map, enemy.imgSrc, enemy.life, enemy.posX, enemy.posY, enemy.power, enemy.speed, enemy.size);
       case "boss":
         return new EnemyBoss(ctx, map, enemy.imgSrc, enemy.posX, enemy.posY, heroe, enemy.life, enemy.power, enemy.speed, enemy.size);  
+      case "rick":
+        return new EnemyBoss(ctx, map, "./img/rick.png", enemy.posX, enemy.posY, heroe, enemy.life, enemy.power, enemy.speed, enemy.size); 
     }
   }
 }

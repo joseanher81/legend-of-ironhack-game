@@ -24,9 +24,9 @@ class Controller {
       case " ":
         this.keyPressed = "space";
         break;
-      case "n":
-      case "N":
-        this.keyPressed = "N";
+      case "r":
+      case "R":
+        this.keyPressed = "r";
         break;                   
     }
   }
@@ -47,7 +47,7 @@ class Controller {
     else if(e.key == " " && this.keyPressed == "space"){
       this.keyPressed = ""; 
     }
-    else if((e.key == "N" || e.key == "n") && (this.keyPressed == "N" || this.keyPressed == "n")){
+    else if((e.key == "R" || e.key == "r") && (this.keyPressed == "R" || this.keyPressed == "r")){
       this.keyPressed = ""; 
     }
     
