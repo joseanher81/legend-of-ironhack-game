@@ -11,6 +11,7 @@ class Game {
     this.gameOverScreen = new Image();
     this.gameOverScreen.src = "./img/gameover.png";
     this.gameOver;
+    this.audioCtr = new AudioController();
   }
 
   init() {
@@ -30,8 +31,8 @@ class Game {
       let delta = (timeStamp - oldTimeStamp) / 1000;
       oldTimeStamp = timeStamp;
   
-      // Update (only if player is alive)
-      if(this.hero.life > 0) {
+      // Update (only if player is alive and game not ended)
+      if(this.hero.life > 0 && !this.gameOver) {
         this.hero.update(this.controller.keyPressed, delta, this.enemies);
         this.enemies.forEach(enemy => enemy.update(delta));
       }
@@ -52,6 +53,9 @@ class Game {
 
       //Check heroe death
       if(this.hero.life <= 0) this.showGameOver();
+
+      // Check heroe victory
+      if(this.enemies.length == 0 && this.map.nextMap == "end") this.showVictory();
 
       // Is the heroe in an exit tile? Then LOAD another map (previous or next)
       if(this.map.getTileAtPositionXY(this.hero.posX + (this.hero.size/2), this.hero.posY + (this.hero.size/2) - this.map.startY) == 99) this.initialize(this.map.nextMap, false);
@@ -81,10 +85,30 @@ class Game {
     this.enemies = []; // reset array first
     this.map.enemies.forEach(enemy => this.enemies.push(Utils.createEnemy(enemy, this.ctx, this.map, this.hero)));
     this.enemies.forEach(enemy => enemy.draw());
+
+    // Initialize music
+    if(this.map.nextMap == "end") this.audioCtr.playBackgroundCastle();
+    this.audioCtr.playBackground();
   }
 
   showGameOver() {
     console.log("gameover");
+    this.audioCtr.stopBackground();
+    this.audioCtr.playDeath();
+    setTimeout(()=> {
+      this.gameOver = true;
+      this.ctx.save();
+      this.ctx.fillStyle = '#000';
+      this.ctx.fillRect(0, 0, 920, 600);
+      this.ctx.drawImage(this.gameOverScreen, 0, 0, 920, 600); 
+      this.ctx.restore();
+   }, 2000);  // Two seconds delay before black screen
+  }
+
+  showVictory() {
+    this.audioCtr.stopBackground();
+    this.audioCtr.playVictory();
+    this.ended = true;
     setTimeout(()=> {
       this.gameOver = true;
       this.ctx.save();

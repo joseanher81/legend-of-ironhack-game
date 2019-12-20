@@ -13,6 +13,7 @@ class Character {
 		this.spriteX = 0;
 		this.spriteY = 0;
 		this.spriteRefresh = 0;
+		this.audioCtr = new AudioController();
 	}
 	
 	collision(x, y) {

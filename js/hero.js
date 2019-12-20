@@ -33,7 +33,8 @@ class Hero extends Character {
       case "space": 
         // Create new fire ball (if it has passed at least 0.5 seconds since last one)
         if(this.lastWeaponSecs > this.currentWeapon.cadence) {
-          this.weapons.push(new Weapon(this.ctx, this.map, this.currentWeapon, this.posX, this.posY, this.spriteY));
+          this.weapons.push(new Weapon(this.ctx, this.map, this.currentWeapon, this.posX, this.posY, this.spriteY));      
+          this.audioCtr.playFireball();
           this.lastWeaponSecs = 0;
         }
         break;
@@ -78,6 +79,7 @@ class Hero extends Character {
         this.posY < enemy.posY + (enemy.size - tuning) && this.posY + (this.size - tuning) > enemy.posY) {
           // There is collision
           if(this.inmunity <= 0) {
+            this.audioCtr.playDamage();
             this.life -= enemy.power;
             this.inmunity = 3; // three seconds of inmunity after enemy touch
           }
@@ -98,6 +100,7 @@ class Hero extends Character {
         if(this.posX < item.posX + (item.size - tuning) && this.posX + (this.size - tuning) > item.posX &&
         this.posY < item.posY + (item.size - tuning) && this.posY + (this.size - tuning) > item.posY) {
           // Is 'touching' item so check the type
+          this.audioCtr.playItem();
           if(item.type == "potion") {
             this.currentWeapon = Weapon.weaponTypes[item.value];
           }

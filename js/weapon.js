@@ -19,6 +19,7 @@ class Weapon {
     this.weapon.src = type.src;
     this.duration = type.duration; // seconds
     this.rotationDegrees = 0;
+    this.audioCtr = new AudioController();
 
     // The weapon face the same direction as the character
     switch(facing) {
@@ -77,6 +78,7 @@ class Weapon {
       if(this.posX < enemy.posX + (enemy.size - tuning) && this.posX + (this.size - tuning) > enemy.posX &&
         this.posY < enemy.posY + (enemy.size - tuning) && this.posY + (this.size - tuning) > enemy.posY) {
         // There is collision
+        this.audioCtr.playEnemyHit(); 
         enemyArray[i].life -= this.power; // enemy takes the same damage as the weapon power
         if(enemyArray[i].life <= 0) enemyArray.splice(i,1);  // if the enemy is dead after the attack it is erased 
         collision = true; // Do I need this? haha
