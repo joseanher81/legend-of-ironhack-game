@@ -3,7 +3,7 @@
 
 The storyline of this state-of-the-art masterpiece is deep and complex, reflecting the moral decay of postmodern capitalist societies.
 
-There is a girl (we may call her Lucy) that travels through the dangerous lands of _Strawberry Fields_, where nothing is real... except the stupidity of the enemies' AI.
+There is a girl (we may call her Lucy) who travels through the dangerous lands of _Strawberry Fields_, where nothing is real... except the stupidity of the enemies' AI.
 Lucy kills those little bastards throwing fireballs with her hands -or vomiting them through her mouth, since the sprite is pretty awful.
 
 ![gifreadme](https://user-images.githubusercontent.com/23436377/71298056-67a9ea00-2386-11ea-9daa-7460135c4dad.gif)
@@ -13,9 +13,9 @@ You can play this monstruoisity with the keypad or your imagination _(Note: imag
 
 ![controls](https://user-images.githubusercontent.com/23436377/71297565-4c3ddf80-2384-11ea-9a83-9a238bde6577.png)
 
-Use arrow buttons for direction and Space for fire
+Use arrow buttons for direction and Space for Fire
 
-You also may press **"R"** but it's up to you.
+You may also press **"R"** but it's up to you.
 
 ## The Characters
 
@@ -33,7 +33,7 @@ This is the final boss (half retarded)
 
 ![catmeme](https://user-images.githubusercontent.com/23436377/71297004-f5370b00-2381-11ea-8194-43365e3f94ef.jpg)
 
-This is a random picture of a cat
+This is a cat
 
 ## Fireballs
 There are 3 types of fireballs. From worst to best:
@@ -50,7 +50,7 @@ Blue fireball
 
 Purple fireball
 
-And for God sake, never press "R" during the game.
+And for God sake, never press **"R"**  during the game.
 
 ## Items
 
@@ -70,7 +70,7 @@ A quantum computer.
 ### Recommended requirements:
 Two quantum computers.
 
-This is the last time I told you, don't press "R" or your soul and hips will be lost.
+And this is the last time I told you, don't press **"R"** or your soul and hips will be lost.
 
 ### Acknowledgement
 I wish to express my gratitude and my sincere affection to everybody involved in this project, specially to myself. Without me this would not have been possible. Thank me!
