@@ -8,6 +8,8 @@ Lucy kills those little bastards throwing fireballs with her hands -or vomiting 
 
 ![gifreadme](https://user-images.githubusercontent.com/23436377/71298056-67a9ea00-2386-11ea-9daa-7460135c4dad.gif)
 
+[Play the game!](https://joseanher81.github.io/legend-of-ironhack-game/)
+
 ## Controls
 You can play this monstruoisity with the keypad or your imagination _(Note: imagination not supported on current version)_.
 
